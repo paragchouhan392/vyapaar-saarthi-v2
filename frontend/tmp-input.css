@@ -1,0 +1,1 @@
+@tailwind base; @tailwind utilities; .foo { @apply text-red-500; }

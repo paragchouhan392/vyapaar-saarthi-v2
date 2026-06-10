@@ -9,6 +9,7 @@ function MarketInsights() {
   const [error, setError] = useState(null);
 
   const API_URL = import.meta.env.VITE_API_URL;
+  console.log(import.meta.env.VITE_API_URL);
 
   useEffect(() => {
     const fetchNews = async () => {

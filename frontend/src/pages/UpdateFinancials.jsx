@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
+import { authHeaders, API_BASE } from "../utils/api";
 
 const MONTHS = [
   "Jan",
@@ -18,8 +19,6 @@ const MONTHS = [
 
 const currentYear = new Date().getFullYear();
 const YEARS = [currentYear - 1, currentYear, currentYear + 1];
-
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 function formatINR(value) {
   if (value >= 1_00_00_000) return `₹${(value / 1_00_00_000).toFixed(2)}Cr`;
@@ -52,6 +51,7 @@ export default function UpdateFinancials() {
     try {
       const res = await fetch(`${API_BASE}/financials`, {
         credentials: "include",
+        headers: authHeaders(),
       });
       const data = await res.json();
       if (res.ok) setEntries(data.entries || []);
@@ -93,7 +93,7 @@ export default function UpdateFinancials() {
       const res = await fetch(`${API_BASE}/financials`, {
         method: "POST",
         credentials: "include",
-        headers: { "Content-Type": "application/json" },
+        headers: authHeaders(),
         body: JSON.stringify({ month, revenue, expenses, customers }),
       });
       const data = await res.json();
@@ -124,6 +124,7 @@ export default function UpdateFinancials() {
         {
           method: "DELETE",
           credentials: "include",
+          headers: authHeaders(),
         },
       );
       const data = await res.json();

@@ -37,15 +37,11 @@ function HomePage() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     setIsSubmitting(true);
     setAuthMessage("");
     setAuthError("");
@@ -53,10 +49,7 @@ function HomePage() {
     const endpoint = modalType === "login" ? "/auth/login" : "/auth/register";
     const payload =
       modalType === "login"
-        ? {
-            email: formData.email,
-            password: formData.password,
-          }
+        ? { email: formData.email, password: formData.password }
         : {
             businessName: formData.businessName,
             email: formData.email,
@@ -68,10 +61,7 @@ function HomePage() {
     try {
       const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
@@ -79,6 +69,11 @@ function HomePage() {
 
       if (!response.ok) {
         throw new Error(data.message || "Authentication failed");
+      }
+
+      // Save token to localStorage so all pages can use it
+      if (data.token) {
+        localStorage.setItem("vs_token", data.token);
       }
 
       setAuthMessage(data.message || "Authentication successful");
@@ -189,7 +184,6 @@ function HomePage() {
                 inventory, marketing, and expansion.
               </p>
             </article>
-
             <article className="fintech-card p-5">
               <p className="text-sm text-brand-100">Security markets</p>
               <h3 className="mt-3 text-lg font-semibold text-white">
@@ -200,7 +194,6 @@ function HomePage() {
                 diversify your portfolio responsibly.
               </p>
             </article>
-
             <article className="fintech-card p-5">
               <p className="text-sm text-brand-100">Govt schemes</p>
               <h3 className="mt-3 text-lg font-semibold text-white">
@@ -211,7 +204,6 @@ function HomePage() {
                 business category and growth stage.
               </p>
             </article>
-
             <article className="fintech-card p-5">
               <p className="text-sm text-brand-100">Tax planning</p>
               <h3 className="mt-3 text-lg font-semibold text-white">
@@ -238,7 +230,6 @@ function HomePage() {
               demand changes with a clearer financial picture.
             </p>
           </article>
-
           <article className="fintech-card p-6">
             <p className="text-sm uppercase tracking-[0.2em] text-brand-100">
               Market readiness
@@ -251,7 +242,6 @@ function HomePage() {
               goals, business stage, and comfort with market fluctuations.
             </p>
           </article>
-
           <article className="fintech-card p-6">
             <p className="text-sm uppercase tracking-[0.2em] text-brand-100">
               Compliance support
@@ -357,10 +347,16 @@ function HomePage() {
                         <option value="" className="bg-slate-950 text-white">
                           Select business type
                         </option>
-                        <option value="retail" className="bg-slate-950 text-white">
+                        <option
+                          value="retail"
+                          className="bg-slate-950 text-white"
+                        >
                           Retail
                         </option>
-                        <option value="services" className="bg-slate-950 text-white">
+                        <option
+                          value="services"
+                          className="bg-slate-950 text-white"
+                        >
                           Services
                         </option>
                         <option
@@ -381,7 +377,10 @@ function HomePage() {
                         >
                           Technology
                         </option>
-                        <option value="other" className="bg-slate-950 text-white">
+                        <option
+                          value="other"
+                          className="bg-slate-950 text-white"
+                        >
                           Other
                         </option>
                       </select>
@@ -455,7 +454,6 @@ function HomePage() {
                   {authMessage}
                 </p>
               )}
-
               {authError && (
                 <p className="rounded-2xl border border-danger-400/30 bg-danger-500/10 px-4 py-3 text-sm text-rose-100">
                   {authError}

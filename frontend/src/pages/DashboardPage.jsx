@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
-
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+import { authHeaders, API_BASE } from "../utils/api";
 
 function formatINR(value) {
   if (!value && value !== 0) return "—";
@@ -267,6 +266,7 @@ export default function DashboardPage() {
       try {
         const res = await fetch(`${API_BASE}/financials`, {
           credentials: "include",
+          headers: authHeaders(),
         });
         if (res.status === 401) {
           setNotAuthenticated(true);

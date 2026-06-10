@@ -2,7 +2,12 @@ const jwt = require('jsonwebtoken');
 
 function authMiddleware(req, res, next) {
   try {
-    const token = req.cookies?.token;
+    // Read from Authorization: Bearer <token> header
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.startsWith('Bearer ')
+      ? authHeader.slice(7)
+      : null;
+
     if (!token) {
       return res.status(401).json({ message: 'Not authenticated. Please log in.' });
     }

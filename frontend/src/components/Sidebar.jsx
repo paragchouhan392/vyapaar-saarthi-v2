@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const menuItems = [
   { name: "Dashboard", path: "/dashboard", icon: "◈" },
+  { name: "Update Financials", path: "/update-financials", icon: "✎" },
   { name: "Investment Ideas", path: "/investment-ideas", icon: "⬢" },
   { name: "Market Insights", path: "/market-insights", icon: "◍" },
   { name: "Govt Schemes", path: "/govt-schemes", icon: "▣" },
@@ -43,7 +44,7 @@ function Sidebar() {
       </nav>
 
       <div className="mt-auto rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-4">
-        <p className="text-sm font-semibold text-emerald-100">Today’s focus</p>
+        <p className="text-sm font-semibold text-emerald-100">Today's focus</p>
         <p className="mt-2 text-sm text-slate-200">
           Review your business finance plan and upcoming scheme deadlines.
         </p>

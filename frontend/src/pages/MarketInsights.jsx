@@ -8,11 +8,13 @@ function MarketInsights() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:3000/news/business");
+        const response = await fetch(`${API_URL}/news/business`);
         const data = await response.json();
 
         if (data.success && data.data) {

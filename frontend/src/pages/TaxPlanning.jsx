@@ -57,64 +57,66 @@ const checklist = [
 function TaxPlanning() {
   return (
     <div className="min-h-screen bg-transparent text-white">
-      <div className="mx-auto flex max-w-7xl flex-col lg:flex-row">
-        <div className="w-full lg:max-w-xs">
+      <div className="mx-auto flex w-full flex-col gap-4 sm:gap-6 lg:flex-row lg:max-w-7xl">
+        <div className="w-full sm:max-w-xs lg:w-xs lg:flex-shrink-0">
           <Sidebar />
         </div>
 
-        <main className="flex-1 px-6 py-8 sm:px-8 lg:px-10">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-primary">
+        <main className="flex-1 w-full px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+          <div className="w-full">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 sm:px-4 py-2 text-xs sm:text-sm text-primary">
               <ShieldCheck size={16} />
-              Tax Planning
+              <span className="hidden sm:inline">Tax Planning</span>
+              <span className="sm:hidden">Tax</span>
             </div>
 
-            <h1 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl">
+            <h1 className="mt-4 sm:mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white">
               Ways to save tax
-              <span className="mt-2 block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <span className="mt-2 block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent text-2xl sm:text-3xl lg:text-4xl">
                 Practical planning for smarter cash flow
               </span>
             </h1>
 
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+            <p className="mt-3 sm:mt-5 max-w-3xl text-sm sm:text-base lg:text-lg leading-6 sm:leading-7 lg:leading-8 text-slate-300">
               A good tax plan is not only about reducing tax—it is about
               building discipline around records, timing, and compliance so your
               business can grow without avoidable liabilities.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-            <section className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 backdrop-blur-lg">
-              <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-emerald-500/20 p-3 text-emerald-200">
-                  <Calculator />
+          <div className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 w-full grid-cols-1 lg:grid-cols-3">
+            {/* Main strategies section */}
+            <section className="lg:col-span-2 rounded-2xl sm:rounded-3xl border border-white/10 bg-slate-950/70 p-4 sm:p-6 backdrop-blur-lg">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                <div className="rounded-xl bg-emerald-500/20 p-2 sm:p-3 text-emerald-200 flex-shrink-0">
+                  <Calculator size={20} />
                 </div>
-                <div>
-                  <p className="text-sm uppercase tracking-[0.2em] text-brand-100">
+                <div className="min-w-0">
+                  <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-brand-100">
                     Tax-saving ideas
                   </p>
-                  <h2 className="mt-2 text-2xl font-semibold text-white">
+                  <h2 className="mt-1 sm:mt-2 text-lg sm:text-2xl font-semibold text-white">
                     Smart ways to save or plan tax
                   </h2>
                 </div>
               </div>
 
-              <div className="mt-5 space-y-4">
+              <div className="mt-4 sm:mt-5 space-y-3 sm:space-y-4">
                 {strategies.map((item) => (
                   <article
                     key={item.title}
-                    className="rounded-2xl border border-white/10 bg-white/5 p-4"
+                    className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 hover:bg-white/10 transition-colors"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="text-lg font-semibold text-white">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex-1">
+                        <h3 className="text-base sm:text-lg font-semibold text-white">
                           {item.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-6 text-slate-200">
+                        <p className="mt-1 sm:mt-2 text-xs sm:text-sm leading-5 sm:leading-6 text-slate-200">
                           {item.description}
                         </p>
                       </div>
-                      <div className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-100 whitespace-nowrap">
+                      <div className="inline-flex rounded-full border border-emerald-400/20 bg-emerald-500/10 px-2 sm:px-3 py-1 text-xs font-semibold text-emerald-100 w-fit">
                         {item.impact}
                       </div>
                     </div>
@@ -123,51 +125,54 @@ function TaxPlanning() {
               </div>
             </section>
 
-            <section className="space-y-6">
-              <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 backdrop-blur-lg">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-brand-500/20 p-3 text-brand-100">
-                    <ReceiptText />
+            {/* Right sidebar with checklist and pro tip */}
+            <section className="flex flex-col gap-6 sm:gap-8 w-full">
+              {/* Checklist Card */}
+              <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-slate-950/70 p-4 sm:p-6 backdrop-blur-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                  <div className="rounded-xl bg-brand-500/20 p-2 sm:p-3 text-brand-100 flex-shrink-0">
+                    <ReceiptText size={20} />
                   </div>
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.2em] text-brand-100">
+                  <div className="min-w-0">
+                    <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-brand-100">
                       Planning checklist
                     </p>
-                    <h2 className="mt-2 text-2xl font-semibold text-white">
+                    <h2 className="mt-1 sm:mt-2 text-lg sm:text-2xl font-semibold text-white">
                       Monthly tax readiness
                     </h2>
                   </div>
                 </div>
 
-                <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-200">
+                <ul className="mt-3 sm:mt-5 space-y-2 sm:space-y-3 text-xs sm:text-sm leading-5 sm:leading-6 text-slate-200">
                   {checklist.map((item) => (
-                    <li key={item} className="flex gap-3">
+                    <li key={item} className="flex gap-2 sm:gap-3">
                       <CheckCircle2
                         className="mt-0.5 flex-shrink-0 text-emerald-200"
-                        size={18}
+                        size={16}
                       />
-                      <span>{item}</span>
+                      <span className="break-words">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 backdrop-blur-lg">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-amber-500/20 p-3 text-amber-200">
-                    <PiggyBank />
+              {/* Pro Tip Card */}
+              <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-slate-950/70 p-4 sm:p-6 backdrop-blur-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                  <div className="rounded-xl bg-amber-500/20 p-2 sm:p-3 text-amber-200 flex-shrink-0">
+                    <PiggyBank size={20} />
                   </div>
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.2em] text-brand-100">
+                  <div className="min-w-0">
+                    <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-brand-100">
                       Pro tip
                     </p>
-                    <h2 className="mt-2 text-2xl font-semibold text-white">
+                    <h2 className="mt-1 sm:text-xl font-semibold text-white">
                       Keep tax planning proactive
                     </h2>
                   </div>
                 </div>
 
-                <p className="mt-4 text-sm leading-7 text-slate-200">
+                <p className="mt-3 sm:mt-4 text-xs sm:text-sm leading-6 sm:leading-7 text-slate-200">
                   Review your tax position every quarter. This helps you catch
                   issues early, adjust procurement and payroll timing, and avoid
                   surprises during filing season.

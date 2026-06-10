@@ -10,12 +10,14 @@ const menuItems = [
 
 function Sidebar() {
   return (
-    <aside className="flex h-full min-h-screen w-full max-w-xs flex-col border-r border-white/10 bg-slate-950/80 px-5 py-6 backdrop-blur">
+    <aside className="flex w-full max-w-full flex-col border-b border-white/10 bg-slate-950/80 px-5 py-6 backdrop-blur lg:max-w-xs lg:sticky lg:top-0 lg:self-start lg:h-screen lg:border-b-0 lg:border-r">
       <div>
         <p className="text-sm uppercase tracking-[0.25em] text-brand-100">
           Vyapaar Saarthi
         </p>
-        <h1 className="mt-3 text-xl font-semibold text-white">Business Dashboard</h1>
+        <h1 className="mt-3 text-xl font-semibold text-white">
+          Business Dashboard
+        </h1>
         <p className="mt-2 text-sm text-slate-300">
           Access your financial planning workspace after login.
         </p>

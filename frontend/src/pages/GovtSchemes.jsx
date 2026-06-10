@@ -131,7 +131,7 @@ const schemes = [
 function GovtSchemes() {
   return (
     <div className="min-h-screen bg-transparent text-white">
-      <div className="mx-auto flex max-w-7xl flex-col lg:flex-row">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row">
         <div className="w-full lg:max-w-xs">
           <Sidebar />
         </div>

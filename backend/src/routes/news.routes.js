@@ -14,12 +14,12 @@ router.get("/business", getBusinessNews);
 router.get("/sync", async (req, res) => {
     try {
         console.log("Manual news sync triggered");
-        
+
         const articles = await fetchBusinessNews();
         console.log("Articles fetched:", articles.length);
 
         await News.deleteMany({});
-        
+
         await News.insertMany(
             articles.map(article => ({
                 title: article.title,
@@ -32,16 +32,16 @@ router.get("/sync", async (req, res) => {
             }))
         );
 
-        res.json({ 
-            success: true, 
-            message: "News synced successfully", 
-            count: articles.length 
+        res.json({
+            success: true,
+            message: "News synced successfully",
+            count: articles.length
         });
     } catch (error) {
         console.error("Error syncing news:", error.message);
-        res.status(500).json({ 
-            success: false, 
-            message: error.message 
+        res.status(500).json({
+            success: false,
+            message: error.message
         });
     }
 });

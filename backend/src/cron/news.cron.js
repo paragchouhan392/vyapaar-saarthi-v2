@@ -10,8 +10,8 @@ cron.schedule("*/30 * * * *", async () => {
         const articles = await fetchBusinessNews();
         console.log("Articles fetched:", articles.length);
 
-        await News.deleteMany({});
-        console.log("Old news deleted");
+        /* await News.deleteMany({});
+        console.log("Old news deleted"); */
 
         await News.insertMany(
             articles.map(article => ({
